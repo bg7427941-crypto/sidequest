@@ -12,7 +12,7 @@ import '../missions/mission_detail_screen.dart';
 class ExploreScreen extends ConsumerStatefulWidget {
   const ExploreScreen({super.key});
   @override
-  State<ExploreScreen> createState() => _ExploreScreenState();
+  ConsumerState<ExploreScreen> createState() => _ExploreScreenState();
 }
 
 class _ExploreScreenState extends ConsumerState<ExploreScreen> {
