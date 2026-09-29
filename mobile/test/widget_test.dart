@@ -17,6 +17,6 @@ void main() {
     expect(find.text('Hola, explorador'), findsOneWidget);
     await tester.tap(find.text('Perfil'));
     await tester.pumpAndSettle();
-    expect(find.text('Aquí irán tu nivel, insignias e historial.'), findsOneWidget);
+    expect(find.text('Insignias'), findsOneWidget);
   });
 }
