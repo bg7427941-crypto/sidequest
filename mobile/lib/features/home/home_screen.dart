@@ -16,10 +16,9 @@ class HomeScreen extends ConsumerWidget {
     final missionsAsync = ref.watch(missionsProvider);
     final missions = missionsAsync.valueOrNull ?? demoMissions;
     final text = Theme.of(context).textTheme;
-    final nextMission = missions.firstWhere(
+    final nextMission = missions.where(
       (mission) => !player.completedMissionIds.contains(mission.id),
-      orElse: () => missions.first,
-    );
+    ).firstOrNull;
 
     return SafeArea(
       child: ListView(
@@ -40,7 +39,19 @@ class HomeScreen extends ConsumerWidget {
           const SizedBox(height: 24),
           Text('Siguiente misión', style: text.titleMedium?.copyWith(fontWeight: FontWeight.w700)),
           const SizedBox(height: 12),
-          _MissionTile(mission: nextMission, completed: player.completedMissionIds.contains(nextMission.id)),
+          if (nextMission != null)
+            _MissionTile(
+              mission: nextMission,
+              completed: player.completedMissionIds.contains(nextMission.id),
+            )
+          else
+            const Card(
+              child: ListTile(
+                leading: Icon(Icons.emoji_events_outlined),
+                title: Text('¡Todas las misiones completadas!'),
+                subtitle: Text('Explora el mapa para descubrir nuevos retos.'),
+              ),
+            ),
           const SizedBox(height: 18),
           Text('Tu progreso', style: text.titleMedium?.copyWith(fontWeight: FontWeight.w700)),
           const SizedBox(height: 10),

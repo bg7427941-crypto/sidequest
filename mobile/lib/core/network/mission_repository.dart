@@ -22,10 +22,11 @@ class MissionRepository {
         options: Options(receiveTimeout: const Duration(seconds: 5)),
       );
       final data = response.data ?? const <dynamic>[];
-      return data
+      final missions = data
           .whereType<Map<String, dynamic>>()
           .map(DemoMission.fromJson)
           .toList();
+      return missions.isEmpty ? demoMissions : missions;
     } catch (_) {
       // El modo demo permite que la app siga funcionando sin backend.
       return demoMissions;
@@ -48,10 +49,11 @@ class MissionRepository {
         options: Options(receiveTimeout: const Duration(seconds: 5)),
       );
       final data = response.data ?? const <dynamic>[];
-      return data
+      final missions = data
           .whereType<Map<String, dynamic>>()
           .map(DemoMission.fromJson)
           .toList();
+      return missions.isEmpty ? demoMissions : missions;
     } catch (_) {
       return demoMissions;
     }
