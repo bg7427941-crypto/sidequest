@@ -4,16 +4,17 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import '../../core/theme/app_theme.dart';
+import '../../core/player/player_state.dart';
 import '../missions/demo_missions.dart';
 import '../missions/mission_detail_screen.dart';
 
-class ExploreScreen extends StatefulWidget {
+class ExploreScreen extends ConsumerStatefulWidget {
   const ExploreScreen({super.key});
   @override
   State<ExploreScreen> createState() => _ExploreScreenState();
 }
 
-class _ExploreScreenState extends State<ExploreScreen> {
+class _ExploreScreenState extends ConsumerState<ExploreScreen> {
   final _map = MapController();
   static const _lima = LatLng(-12.0900, -77.0400);
   String _category = 'Todas';
@@ -103,7 +104,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
           Text(_selected!.category.toUpperCase(), style: const TextStyle(color: AppColors.primary, fontSize: 11, fontWeight: FontWeight.bold)),
           const SizedBox(height: 6), Text(_selected!.title, style: Theme.of(context).textTheme.titleLarge),
           Text(_selected!.locationName, style: const TextStyle(color: AppColors.textMuted)),
-          const SizedBox(height: 6), Text('${_distance.as(LengthUnit.Kilometer, origin, _selected!.location).toStringAsFixed(1)} km en línea recta · +${_selected!.xp} XP (demo)'),
+          const SizedBox(height: 6), Text('${_distance.as(LengthUnit.Kilometer, origin, _selected!.location).toStringAsFixed(1)} km en línea recta · +${_selected!.xp} XP'),
           const SizedBox(height: 12), SizedBox(width: double.infinity, child: FilledButton(
             onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => MissionDetailScreen(mission: _selected!))),
             child: const Text('Ver misión'))),
