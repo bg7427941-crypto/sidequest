@@ -28,6 +28,42 @@ class DemoMission {
   final int radiusMeters;
   final LatLng location;
   final IconData icon;
+
+  factory DemoMission.fromJson(Map<String, dynamic> json) {
+    final category = json['category']?.toString() ?? 'Exploración';
+    return DemoMission(
+      id: json['id'].toString(),
+      title: json['title'].toString(),
+      description: json['description'].toString(),
+      category: category,
+      difficulty: json['difficulty'].toString(),
+      xp: (json['xp'] as num).toInt(),
+      location: LatLng(
+        (json['latitude'] as num).toDouble(),
+        (json['longitude'] as num).toDouble(),
+      ),
+      locationName: json['location_name'].toString(),
+      icon: missionIconForCategory(category),
+      radiusMeters: (json['radius_meters'] as num).toInt(),
+    );
+  }
+}
+
+IconData missionIconForCategory(String category) {
+  switch (category) {
+    case 'Naturaleza':
+      return Icons.park;
+    case 'Fotografía':
+      return Icons.photo_camera;
+    case 'Cultura e historia':
+      return Icons.account_balance;
+    case 'Arquitectura':
+      return Icons.architecture;
+    case 'Arte':
+      return Icons.palette;
+    default:
+      return Icons.explore;
+  }
 }
 
 const demoMissions = <DemoMission>[

@@ -48,7 +48,7 @@ class HomeScreen extends ConsumerWidget {
                 children: [
                   const Icon(Icons.check_circle_outline, color: AppColors.primary),
                   const SizedBox(width: 12),
-                  Text('${player.completedMissionIds.length}/${demoMissions.length} misiones completadas'),
+                  Text('${player.completedMissionIds.length}/${missions.length} misiones completadas'),
                 ],
               ),
             ),

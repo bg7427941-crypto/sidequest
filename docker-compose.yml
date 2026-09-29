@@ -1,0 +1,28 @@
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    container_name: sidequest-postgis
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: sidequest
+      POSTGRES_USER: sidequest
+      POSTGRES_PASSWORD: sidequest
+    ports:
+      - "5432:5432"
+    volumes:
+      - sidequest_pgdata:/var/lib/postgresql/data
+      - ./backend/sql/seed.sql:/docker-entrypoint-initdb.d/01-seed.sql:ro
+
+  api:
+    build: ./backend
+    container_name: sidequest-api
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql+psycopg://sidequest:sidequest@db:5432/sidequest
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+volumes:
+  sidequest_pgdata:

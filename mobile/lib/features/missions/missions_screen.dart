@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/player/player_state.dart';
+import '../../core/network/mission_repository.dart';
 import '../../core/theme/app_theme.dart';
 import 'demo_missions.dart';
 import 'mission_detail_screen.dart';
@@ -13,8 +14,12 @@ class MissionsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final player = ref.watch(playerProvider);
-    final available = demoMissions.where((m) => !player.completedMissionIds.contains(m.id)).toList();
-    final completed = demoMissions.where((m) => player.completedMissionIds.contains(m.id)).toList();
+    final missions = ref.watch(missionsProvider).maybeWhen(
+      data: (value) => value,
+      orElse: () => demoMissions,
+    );
+    final available = missions.where((m) => !player.completedMissionIds.contains(m.id)).toList();
+    final completed = missions.where((m) => player.completedMissionIds.contains(m.id)).toList();
     final text = Theme.of(context).textTheme;
 
     return SafeArea(
