@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../core/player/player_state.dart';
 import '../../core/theme/app_theme.dart';
 import '../missions/demo_missions.dart';
+import '../../core/network/mission_repository.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -12,10 +13,12 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final player = ref.watch(playerProvider);
+    final missionsAsync = ref.watch(missionsProvider);
+    final missions = missionsAsync.valueOrNull ?? demoMissions;
     final text = Theme.of(context).textTheme;
-    final nextMission = demoMissions.firstWhere(
+    final nextMission = missions.firstWhere(
       (mission) => !player.completedMissionIds.contains(mission.id),
-      orElse: () => demoMissions.first,
+      orElse: () => missions.first,
     );
 
     return SafeArea(
