@@ -1,20 +1,20 @@
 # sidequest
 
-A new Flutter project.
+Un nuevo proyecto de Flutter.
 
-## Getting Started
+## Comenzar
 
-This project is a starting point for a Flutter application.
+Este proyecto es un punto de partida para una aplicación de Flutter.
 
-A few resources to get you started if this is your first Flutter project:
+Aquí hay algunos recursos para empezar si es tu primer proyecto de Flutter:
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+- [Aprende Flutter](https://docs.flutter.dev/get-started/learn-flutter)
+- [Escribe tu primera aplicación de Flutter](https://docs.flutter.dev/get-started/codelab)
+- [Recursos de aprendizaje de Flutter](https://docs.flutter.dev/reference/learning-resources)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Para obtener ayuda para comenzar con el desarrollo de Flutter, consulta la
+[documentación en línea](https://docs.flutter.dev/), que ofrece tutoriales,
+ejemplos, orientación sobre desarrollo móvil y una referencia completa de API.
 
 ## Backend — Fase 6
 
