@@ -106,7 +106,7 @@ class _MissionTile extends StatelessWidget {
           child: Icon(mission.icon, color: AppColors.primary),
         ),
         title: Text(mission.title),
-        subtitle: Text('${mission.category} · ${mission.distanceKm} km', style: const TextStyle(color: AppColors.textMuted)),
+        subtitle: Text('${mission.category} · ${mission.locationName}', style: const TextStyle(color: AppColors.textMuted)),
         trailing: Text('+${mission.xp} XP', style: const TextStyle(color: AppColors.primary, fontWeight: FontWeight.w700)),
       ),
     );
