@@ -1,4 +1,5 @@
 import '../game/progression.dart';
+import '../../features/missions/demo_missions.dart';
 
 class AchievementBadge {
   const AchievementBadge({required this.id, required this.name, required this.description, required this.icon, required this.isUnlocked});
@@ -12,12 +13,10 @@ class AchievementBadge {
 
 List<AchievementBadge> buildBadges({required Set<String> completedMissionIds, required int xp}) {
   final completed = completedMissionIds.length;
-  final categories = <String>{
-    if (completedMissionIds.contains('plaza-mayor')) 'Exploración',
-    if (completedMissionIds.contains('parque-reserva')) 'Naturaleza',
-    if (completedMissionIds.contains('parque-kennedy')) 'Fotografía',
-    if (completedMissionIds.contains('barranco')) 'Cultura e historia',
-  };
+  final categories = demoMissions
+      .where((mission) => completedMissionIds.contains(mission.id))
+      .map((mission) => mission.category)
+      .toSet();
 
   return [
     AchievementBadge(id: 'first-step', name: 'Primera aventura', description: 'Completa tu primera misión.', icon: '🧭', isUnlocked: completed >= 1),

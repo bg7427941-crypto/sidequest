@@ -84,14 +84,14 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
           const Text('EXPLORAR LIMA', style: TextStyle(color: AppColors.primary, fontWeight: FontWeight.w800, letterSpacing: 1.5)),
           const SizedBox(height: 8),
           Wrap(spacing: 8, runSpacing: 8, children: [
-            DropdownButton<String>(value: _category, underline: const SizedBox(), items: ['Todas','Exploración','Naturaleza','Fotografía','Cultura e historia']
+            DropdownButton<String>(value: _category, underline: const SizedBox(), items: ['Todas', ...demoCategories]
               .map((x) => DropdownMenuItem(value: x, child: Text(x))).toList(), onChanged: (x) => setState(() => _category = x!)),
-            DropdownButton<String>(value: _difficulty, underline: const SizedBox(), items: ['Todas','Fácil','Media']
+            DropdownButton<String>(value: _difficulty, underline: const SizedBox(), items: ['Todas', ...demoDifficulties]
               .map((x) => DropdownMenuItem(value: x, child: Text(x))).toList(), onChanged: (x) => setState(() => _difficulty = x!)),
           ]),
           Row(children: [Text('Radio: ${_maxDistanceKm.round()} km', style: const TextStyle(fontSize: 12)),
             Expanded(child: Slider(value: _maxDistanceKm, min: 1, max: 50, divisions: 49, onChanged: (v) => setState(() => _maxDistanceKm = v)))]),
-          Text('${_visible.length} misiones de demostración · Distancia ${_position == null ? 'desde Lima centro' : 'desde tu ubicación'}',
+          Text('${_visible.length} sitios/misiones · Distancia ${_position == null ? 'desde Lima centro' : 'desde tu ubicación'}',
             style: const TextStyle(color: AppColors.textMuted, fontSize: 11)),
         ])))),
       Positioned(right: 16, bottom: _selected == null ? 22 : 205, child: FloatingActionButton(
